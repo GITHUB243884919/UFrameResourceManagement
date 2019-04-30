@@ -1,0 +1,3 @@
+prefabs/cube,prefabs_cube.unity3d
+scenes/main,scenes_main.unity3d
+scenes/scene_2,scenes_scene_2.unity3d

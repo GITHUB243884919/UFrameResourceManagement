@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 688818165
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: bundle-hash.unity3d
+      Dependencies: {}
