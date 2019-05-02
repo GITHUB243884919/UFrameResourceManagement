@@ -16,27 +16,8 @@ namespace Game
     /// </summary>
     public class GameApp : IGameApp 
     {
-        //FSMMachine gameFSMMachine = new FSMMachine();
-        
         public void Awake()
         {
-            //Logger.LogWarp.Log("GameApp Awake");
-            //FSMState stateUpdate = new StateUpdate("Update", gameFSMMachine);
-            //FSMState stateLogin = new StateLogin("Login", gameFSMMachine);
-            //FSMState stateHome = new StateHome("Home", gameFSMMachine);
-
-            //gameFSMMachine.AddState(stateUpdate);
-            //gameFSMMachine.AddState(stateLogin);
-            //gameFSMMachine.AddState(stateHome);
-            //gameFSMMachine.SetDefaultState("Update");
-
-            //ResHelper.LoadScene("scenes/scene_2");
-            //var getter = ResHelper.LoadGameObject("prefabs/cube");
-            //GameObject go = getter.Get();
-            //Logger.LogWarp.Log(go.name);
-
-
-
 
         }
 
@@ -72,47 +53,58 @@ namespace Game
 
         public void Start()
         {
-            LoadScene_1();
+            LoadScene();
         }
 
-        void LoadScene_1()
+        void LoadScene()
         {
-            //string scenePath = "GameResources/scenes/scene_2";
-            //UnityEngine.SceneManagement.SceneManager.LoadScene(scenePath);
-            //UnityEngine.SceneManagement.SceneManager.sceneLoaded +=
-            //    (a, b) =>
-            //    {
-            //        Debug.Log(a.name);
-            //        string loadPath = "Assets/GameResources/prefabs/cube.prefab";
-            //        GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(loadPath);
-            //        GameObject go = GameObject.Instantiate<GameObject>(prefab);
-            //        Debug.Log(go.name);
-            //    };
+            //UFrame.ResourceManagement.SceneManagement.GetInstance().LoadScene("scenes/scene_2", () =>
+            //{
+            //    var getter = ResHelper.LoadGameObject("prefabs/cube");
+            //    GameObject go = getter.Get();
+            //    Logger.LogWarp.Log(go.name);
+            //});
 
-            //ResHelper.LoadScene("scenes/scene_2");
-            //UnityEngine.SceneManagement.SceneManager.sceneLoaded +=
-            //    (a, b) =>
-            //    {
-            //        var getter = ResHelper.LoadGameObject("prefabs/cube");
-            //        GameObject go = getter.Get();
-            //        Logger.LogWarp.Log(go.name);
-            //    };
-
-            UFrame.ResourceManagement.SceneManagement.GetInstance().LoadScene("scenes/scene_2", () =>
-            {
-                var getter = ResHelper.LoadGameObject("prefabs/cube");
-                GameObject go = getter.Get();
-                Logger.LogWarp.Log(go.name);
-            });
-
+            UFrame.ResourceManagement.SceneManagement.GetInstance().LoadScene("scenes/scene_2", LoadSceneCallback);
         }
 
 
         public void Update(float s)
         {
-            //MessageManager.GetInstance().Tick();
-            //gameFSMMachine.Tick((int)(s * 1000));
-            
+                        
+        }
+
+        void LoadSceneCallback()
+        {
+            LoadCube();
+            LoadTerrain();
+        }
+
+        void LoadCube()
+        {
+            var getter = ResHelper.LoadGameObject("prefabs/cube");
+            GameObject go = getter.Get();
+            Logger.LogWarp.Log(go.name);
+        }
+
+        void LoadTerrain()
+        {
+            //string path = "";
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    for(int j =0; j < 2; j++)
+            //    {
+            //        path = string.Format("terrainslicing/t_{0}_{1}", i, j);
+            //        var getter = ResHelper.LoadGameObject(path);
+            //        GameObject go = getter.Get();
+            //        go.transform.position = new Vector3(100* i, 0, 100 * j);
+            //    }
+            //}
+
+            string path = "terrainslicing/terrain";
+            var getter = ResHelper.LoadGameObject(path);
+            GameObject go = getter.Get();
+
         }
     }
 

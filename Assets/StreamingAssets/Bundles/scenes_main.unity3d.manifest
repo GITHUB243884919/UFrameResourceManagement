@@ -1,14 +1,47 @@
 ManifestFileVersion: 0
-CRC: 4066763896
+CRC: 3654493167
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 82007fb444473b08a2de8aba896cf3a2
+    Hash: 913eb9d9dae7b7ce3c4acd5815f5547c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+    Hash: aed67d7f8e15b1b5aa9506394d7f364e
 HashAppended: 0
-ClassTypes: []
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: be1d0b99114ea914f9b1adee71fe08b9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6b98f9eed31f96e4d81560b1b5471348, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 154
+  Script: {instanceID: 0}
+- Class: 156
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 218
+  Script: {instanceID: 0}
 Assets:
 - Assets/GameResources/scenes/main.unity
-Dependencies: []
+Dependencies:
+- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/terrainslicing_terrain.unity3d

@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 2036381317
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 32c84224b00a5dd86f87d812e2b546bb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c2bdabd68c118aabc18c59eaf5951821
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/materials/building.mat
+Dependencies: []

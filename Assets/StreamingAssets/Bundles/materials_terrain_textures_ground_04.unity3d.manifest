@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 4039136109
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b739a4ee5d89e3be73f439686a1aa4eb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c73412a662fd4e4f36af34cbdf078b85
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/materials/terrain_textures/ground_04.jpg
+Dependencies: []

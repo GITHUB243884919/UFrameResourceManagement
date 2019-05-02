@@ -1,14 +1,38 @@
 ManifestFileVersion: 0
-CRC: 3755702843
+CRC: 4170506467
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 74570362b443fc213a5d345ec18e8bca
+    Hash: 202f6647fd6af7db2c27ff7572b02be0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 31d6cfe0d16ae931b73c59d7e0c089c0
+    Hash: d439c31fe4b7ccb4836eb8fcff1c22ab
 HashAppended: 0
-ClassTypes: []
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 81
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 258
+  Script: {instanceID: 0}
 Assets:
 - Assets/GameResources/scenes/scene_2.unity
 Dependencies: []
