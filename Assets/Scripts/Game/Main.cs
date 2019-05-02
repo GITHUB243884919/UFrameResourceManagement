@@ -89,21 +89,21 @@ namespace Game
 
         void LoadTerrain()
         {
-            //string path = "";
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    for(int j =0; j < 2; j++)
-            //    {
-            //        path = string.Format("terrainslicing/t_{0}_{1}", i, j);
-            //        var getter = ResHelper.LoadGameObject(path);
-            //        GameObject go = getter.Get();
-            //        go.transform.position = new Vector3(100* i, 0, 100 * j);
-            //    }
-            //}
+            string path = "";
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    path = string.Format("terrainslicing/t_{0}_{1}", i, j);
+                    var getter = ResHelper.LoadGameObject(path);
+                    GameObject go = getter.Get();
+                    go.transform.position = new Vector3(100 * i, 0, 100 * j);
+                }
+            }
 
-            string path = "terrainslicing/terrain";
-            var getter = ResHelper.LoadGameObject(path);
-            GameObject go = getter.Get();
+            //string path = "terrainslicing/terrain";
+            //var getter = ResHelper.LoadGameObject(path);
+            //GameObject go = getter.Get();
 
         }
     }

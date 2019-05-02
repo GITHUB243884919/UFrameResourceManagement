@@ -3,20 +3,22 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TerrainLoad
-{
-    public static string TERRAIN_PATH = "terrainslicing/";
-    public static string TERRAIN_NAME = "t";
+//public class TerrainLoad
+//{
+//    public static string TERRAIN_PATH = "TerrainSlicing/";
+//    public static string TERRAIN_NAME = "t";
 
-}
-public class TerrainSlicing : Editor
+//}
+public class TerrainSlicing1 : Editor
 {
-    public static string TerrainSavePath = "Assets/Resources/" + TerrainLoad.TERRAIN_PATH;
+    
+    public static string TerrainDataSavePath = "Assets/ArtResources/" + TerrainLoad.TERRAIN_PATH;
+    public static string TerrainSavePath = "Assets/GameResources/" + TerrainLoad.TERRAIN_PATH;
     //分割大小
     public static int SLICING_SIZE = 2;
 
     //开始分割地形
-    [MenuItem("Terrain/Slicing")]
+    [MenuItem("Terrain/Slicing1")]
     private static void Slicing()
     {
         Terrain terrain = GameObject.FindObjectOfType<Terrain>();
@@ -28,6 +30,9 @@ public class TerrainSlicing : Editor
 
         if (Directory.Exists(TerrainSavePath)) Directory.Delete(TerrainSavePath, true);
         Directory.CreateDirectory(TerrainSavePath);
+
+        if (Directory.Exists(TerrainDataSavePath)) Directory.Delete(TerrainDataSavePath, true);
+        Directory.CreateDirectory(TerrainDataSavePath);
 
         TerrainData terrainData = terrain.terrainData;
 
@@ -51,11 +56,17 @@ public class TerrainSlicing : Editor
             {
                 //创建资源
                 TerrainData newData = new TerrainData();
+                //Terrain subterrain = new Terrain();
+                //subterrain.terrainData = new TerrainData();
+                //subterrain.terrainData = newData;
+
                 //string terrainName = TerrainSavePath + TerrainLoad.TERRAIN_NAME + y + "_" + x + ".asset";
-                string terrainName = string.Format("{0}{1}_{2}_{3}.prefab", TerrainSavePath, TerrainLoad.TERRAIN_NAME, x, y);
+                string terrainPrefabPath = string.Format("{0}{1}_{2}_{3}.prefab", TerrainSavePath, TerrainLoad.TERRAIN_NAME, x, y);
                 //AssetDatabase.CreateAsset(newData, TerrainSavePath + TerrainLoad.TERRAIN_NAME + y + "_" + x + ".asset");
-                AssetDatabase.CreateAsset(newData, terrainName);
-                EditorUtility.DisplayProgressBar("正在分割地形", terrainName, (float)(x * SLICING_SIZE + y) / (float)(SLICING_SIZE * SLICING_SIZE));
+                string terrainDataPath = string.Format("{0}{1}_{2}_{3}.asset", TerrainDataSavePath, TerrainLoad.TERRAIN_NAME, x, y);
+                AssetDatabase.CreateAsset(newData, terrainDataPath);
+                
+                EditorUtility.DisplayProgressBar("正在分割地形", terrainPrefabPath, (float)(x * SLICING_SIZE + y) / (float)(SLICING_SIZE * SLICING_SIZE));
 
                 //设置分辨率参数
                 newData.heightmapResolution = (terrainData.heightmapResolution - 1) / SLICING_SIZE;
@@ -94,6 +105,14 @@ public class TerrainSlicing : Editor
                 int yBase = terrainData.heightmapHeight / SLICING_SIZE;
                 float[,] height = terrainData.GetHeights(xBase * x, yBase * y, xBase + 1, yBase + 1);
                 newData.SetHeights(0, 0, height);
+
+                GameObject terrainGo = new GameObject();
+                var subTerrain = terrainGo.AddComponent<Terrain>();
+                subTerrain.terrainData = newData;
+                var subCollider = terrainGo.AddComponent<TerrainCollider>();
+                subCollider.terrainData = newData;
+                terrainGo.name = Path.GetFileNameWithoutExtension(terrainPrefabPath);
+                PrefabUtility.CreatePrefab(terrainPrefabPath, terrainGo, ReplacePrefabOptions.ConnectToPrefab);
             }
         }
 

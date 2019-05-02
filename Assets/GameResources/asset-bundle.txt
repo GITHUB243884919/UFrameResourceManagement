@@ -11,7 +11,6 @@ materials/terrain_textures/ground_05_nmp,materials_terrain_textures_ground_05_nm
 prefabs/cube,prefabs_cube.unity3d
 scenes/main,scenes_main.unity3d
 scenes/scene_2,scenes_scene_2.unity3d
-terrainslicing/terrain,terrainslicing_terrain.unity3d
 terrainslicing/t_0_0,terrainslicing_t_0_0.unity3d
 terrainslicing/t_0_1,terrainslicing_t_0_1.unity3d
 terrainslicing/t_1_0,terrainslicing_t_1_0.unity3d
