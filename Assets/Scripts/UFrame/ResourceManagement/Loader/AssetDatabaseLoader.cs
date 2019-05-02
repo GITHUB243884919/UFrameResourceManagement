@@ -118,7 +118,6 @@ namespace UFrame.ResourceManagement
         public  GameObjectGetter LoadGameObject(string assetPath)
         {
             string loadPath = GetAssetPathWithExtend(assetPath.ToLower());
-            Debug.Log(loadPath);
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(loadPath);
 
             AssetHolder assetHolder = new AssetHolder(prefab);
