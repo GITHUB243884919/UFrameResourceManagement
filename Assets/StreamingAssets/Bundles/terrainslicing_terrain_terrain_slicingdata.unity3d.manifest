@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 2832096804
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 52d59bebe1c912e88a35f890d12a60ba
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 53605dab74514c20cfef80ea3d1a20d5
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: bbcbf0fd13f206548b6695d093521347, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/terrainslicing/terrain/terrain_slicingdata.asset
+Dependencies: []
