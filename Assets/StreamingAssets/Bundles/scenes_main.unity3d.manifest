@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1731408441
+CRC: 5340417
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 096bfb111ebb6155aec2f1e94fd0430a
+    Hash: da84cd3714c76b041800a246f51992ce
   TypeTreeHash:
     serializedVersion: 2
     Hash: aed67d7f8e15b1b5aa9506394d7f364e
@@ -50,3 +50,4 @@ Dependencies:
 - D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_04_nmp.unity3d
 - D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_05.unity3d
 - D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_05_nmp.unity3d
+- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/prefabs_nine_trunk_test.unity3d

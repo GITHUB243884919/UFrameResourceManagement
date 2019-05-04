@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1337852557852866}
+  m_RootGameObject: {fileID: 1724258575075306}
   m_IsPrefabParent: 1
---- !u!1 &1337852557852866
+--- !u!1 &1724258575075306
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4071553255589384}
-  - component: {fileID: 218934182750075090}
-  - component: {fileID: 154310262577830426}
+  - component: {fileID: 4656557226522158}
+  - component: {fileID: 218437016825149650}
+  - component: {fileID: 154120479130067206}
   m_Layer: 0
   m_Name: terrain_2_0
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4071553255589384
+--- !u!4 &4656557226522158
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1337852557852866}
+  m_GameObject: {fileID: 1724258575075306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,22 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!154 &154310262577830426
+--- !u!154 &154120479130067206
 TerrainCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1337852557852866}
+  m_GameObject: {fileID: 1724258575075306}
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 911fe756501093242b816053fc189fdb, type: 2}
   m_EnableTreeColliders: 1
---- !u!218 &218934182750075090
+--- !u!218 &218437016825149650
 Terrain:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1337852557852866}
+  m_GameObject: {fileID: 1724258575075306}
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: 911fe756501093242b816053fc189fdb, type: 2}

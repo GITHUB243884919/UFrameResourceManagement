@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 74201770
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6bc3f36660bfaa7f682afa9192b125a9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8a0d50f074cf664d80b184c871554703
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4a904fbec6093094ab4f9d24689a178f, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/prefabs/nine_trunk_test.prefab
+Dependencies: []

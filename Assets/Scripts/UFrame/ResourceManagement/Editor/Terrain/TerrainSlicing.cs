@@ -11,7 +11,7 @@ namespace UFrame.ResourceManagement
         public static string terrainGoSavePath = "Assets/GameResources/terrainslicing";
         public static string terrainName = "";
         //分割大小
-        public static int SLICING_SIZE = 4;
+        public static int SLICING_SIZE = 8;
 
         //开始分割地形
         [MenuItem("UFrame框架/地形/切割")]

@@ -13,7 +13,10 @@ namespace UFrame.ResourceManagement
         Vector2 mapTilesize;
         Vector2 trunkSize;
         Dictionary<Vector2, GameObject> trunckDic = new Dictionary<Vector2, GameObject>();
+        HashSet<Vector2> loadingSet = new HashSet<Vector2>();
 
+        bool isLoading = false;
+        int loadNum = 0;
         public void Init()
         {
 
@@ -68,10 +71,11 @@ namespace UFrame.ResourceManagement
         Vector2 LocateTrunk(Vector3 pos)
         {
             Vector2 index = Vector2.zero;
+            //ceil是上取整， 从0开始计数，所以-2
             float x = Mathf.Ceil(pos.x / trunkSize.x);
-            x -= 1;
+            index.x = x - 2;
             float y = Mathf.Ceil(pos.z / trunkSize.y);
-            y -= 1;
+            index.y = y - 2;
             return index;
         }
 
@@ -100,27 +104,35 @@ namespace UFrame.ResourceManagement
         void LoadNineTrunkAsync(Vector3 pos)
         {
             Vector2 idx = LocateTrunk(pos);
-            Vector2 idxTrunk = Vector2.zero;
-            Logger.LogWarp.Log("idx " + idx);
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
+                    Vector2 idxTrunk = Vector2.zero;
                     idxTrunk.x = i + (int)(idx.x);
                     idxTrunk.y = j + (int)(idx.y);
                     string path = string.Format("terrainslicing/{0}/{1}_{2}_{3}",
                         slicingData.terrainName, slicingData.terrainName,
                         idxTrunk.x, idxTrunk.y);
-                    Logger.LogWarp.Log(path);
-                    ResHelper.LoadGameObjectAsync(path, (getter) =>
-                    {
-                        GameObject go = getter.Get();
-                        float x = trunkSize.x * (i + (int)(idx.x));
-                        float y = trunkSize.y * (j + (int)(idx.y));
-                        go.transform.position = new Vector3(x, 0, y);
-                        go.transform.SetParent(terrainRootTrans);
-                    });
 
+                    if (!trunckDic.ContainsKey(idxTrunk))
+                    {
+                        trunckDic.Add(idxTrunk, null);
+                        //Logger.LogWarp.LogFormat("{0}, {1}", path, idxTrunk);
+                        ResHelper.LoadGameObjectAsync(path, (getter) =>
+                        {
+                            GameObject go = getter.Get();
+                            float x = trunkSize.x * idxTrunk.x;
+                            float y = trunkSize.y * idxTrunk.y;
+                            //Logger.LogWarp.LogFormat("x{0}, y{1}, trunkSize{2}, idxTrunk{3}", x, y, trunkSize, idxTrunk);
+                            
+                            go.transform.position = new Vector3(x, 0, y);
+                            go.transform.rotation = Quaternion.Euler(Vector3.zero);
+                            go.transform.SetParent(terrainRootTrans);
+                            //go.transform.rotation = Quaternion.identity;
+                            trunckDic[idxTrunk] = go;
+                        });
+                    }
                 }
             }
         }
@@ -135,6 +147,8 @@ namespace UFrame.ResourceManagement
             var getter = ResHelper.LoadGameObject("terrainslicing/terrrain_root");
             terrainRoot = getter.Get();
             terrainRootTrans = terrainRoot.transform;
+            terrainRoot.transform.position = Vector3.zero;
+            terrainRoot.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
     }

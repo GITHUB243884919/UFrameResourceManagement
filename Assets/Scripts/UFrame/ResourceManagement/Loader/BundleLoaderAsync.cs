@@ -67,7 +67,7 @@ namespace UFrame.ResourceManagement
             }
 
             string bundleName = GetBundleName(bundleRequest.assetName);
-            Debug.LogError("[" + bundleName + "] [" + bundleRequest.assetName + "]");
+            Debug.Log("[" + bundleName + "] [" + bundleRequest.assetName + "]");
             yield return (CoLoadBundleAsync<T>(bundleRequest.assetName, bundleName, bundleRequest.eLoadAsset, callback));
         }
 
@@ -142,7 +142,7 @@ namespace UFrame.ResourceManagement
                 case E_LoadAsset.LoadSingle:
                     int index = assetName.LastIndexOf("/");
                     string assetNameInBundle = assetName.Substring(index + 1);
-                    Debug.LogError(assetName + " " + assetNameInBundle);
+                    //Debug.LogError(assetName + " " + assetNameInBundle);
                     assetRequest = assetBundle.LoadAssetAsync(assetNameInBundle);
                     break;
                 case E_LoadAsset.LoadAll:

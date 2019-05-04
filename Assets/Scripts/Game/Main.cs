@@ -111,9 +111,17 @@ namespace Game
             //TerrainManager.GetInstance().LoadSlicingTerrain("terrainslicing/terrain/terrain_slicingdata");
             //TerrainManager.GetInstance().LoadSlicingTerrain("terrain");
 
-            Vector3 pos = new Vector3(51, 0, 51);
+
+
             //TerrainManager.GetInstance().LoadSlicingMapTile("terrain", pos);
-            TerrainManager.GetInstance().LoadSlicingMapTileAsync("terrain", pos);
+            //Vector3 pos = new Vector3(51, 0, 51);
+            //TerrainManager.GetInstance().LoadSlicingMapTileAsync("terrain", pos);
+
+            var getter = ResHelper.LoadGameObject("prefabs/nine_trunk_test");
+            var tester = getter.Get();
+            Logger.LogWarp.Log(tester.transform.rotation);
+            tester.transform.position = new Vector3(26, 0, 26);
+            tester.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
     }
 
