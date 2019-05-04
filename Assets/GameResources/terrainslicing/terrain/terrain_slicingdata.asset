@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: terrain_slicingdata
   m_EditorClassIdentifier: 
   terrainName: terrain
-  slicingSize: 2
+  slicingSize: 4
   terrainSize: {x: 200, y: 600, z: 200}

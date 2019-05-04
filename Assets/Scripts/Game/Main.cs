@@ -109,8 +109,11 @@ namespace Game
             //GameObject go = getter.Get();
 
             //TerrainManager.GetInstance().LoadSlicingTerrain("terrainslicing/terrain/terrain_slicingdata");
-            TerrainManager.GetInstance().LoadSlicingTerrain("terrain");
+            //TerrainManager.GetInstance().LoadSlicingTerrain("terrain");
 
+            Vector3 pos = new Vector3(51, 0, 51);
+            //TerrainManager.GetInstance().LoadSlicingMapTile("terrain", pos);
+            TerrainManager.GetInstance().LoadSlicingMapTileAsync("terrain", pos);
         }
     }
 
