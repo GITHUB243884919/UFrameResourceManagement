@@ -55,9 +55,9 @@ namespace Game
         public void Start()
         {
 
-            //LoadScene();
+            LoadScene();
             //Test_Vector2_Bit();
-            Test_Async();
+            //Test_Async();
             //Test_Sync();
         }
 
@@ -142,58 +142,13 @@ namespace Game
 
         void LoadTerrain()
         {
-            //string path = "";
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    for (int j = 0; j < 2; j++)
-            //    {
-            //        path = string.Format("terrainslicing/t_{0}_{1}", i, j);
-            //        var getter = ResHelper.LoadGameObject(path);
-            //        GameObject go = getter.Get();
-            //        go.transform.position = new Vector3(100 * i, 0, 100 * j);
-            //    }
-            //}
-
-            //string path = "terrainslicing/terrain";
-            //var getter = ResHelper.LoadGameObject(path);
-            //GameObject go = getter.Get();
-
-            //TerrainManager.GetInstance().LoadSlicingTerrain("terrainslicing/terrain/terrain_slicingdata");
-            //TerrainManager.GetInstance().LoadSlicingTerrain("terrain");
-
-
-
-            //TerrainManager.GetInstance().LoadSlicingMapTile("terrain", pos);
-            //Vector3 pos = new Vector3(51, 0, 51);
-            //TerrainManager.GetInstance().LoadSlicingMapTileAsync("terrain", pos);
-
             var getter = ResHelper.LoadGameObject("prefabs/nine_trunk_test");
             var tester = getter.Get();
-            Logger.LogWarp.Log(tester.transform.rotation);
             tester.transform.position = new Vector3(26, 0, 26);
-            tester.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
         public void OnDrawGizmos()
         {
-            //int Num = 200 / 8;
-            int Num = 8;
-            int Num2 = 25;
-            for (int i = 0; i <= Num; i++)
-            {
-                Gizmos.color = Color.blue;
-                Vector3 begin = new Vector3(0, 0, 25 * i);
-                Vector3 end = new Vector3(200, 0, 25 * i);
-                Gizmos.DrawLine(begin, end);
-            }
-
-            for (int i = 0; i <= Num; i++)
-            {
-                Gizmos.color = Color.blue;
-                Vector3 begin = new Vector3(25 * i, 0, 0);
-                Vector3 end = new Vector3(25 * i, 0, 200);
-                Gizmos.DrawLine(begin, end);
-            }
         }
     }
 

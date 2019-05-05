@@ -17,6 +17,7 @@ namespace UFrame.ResourceManagement
         /// trunk是9宫格，边长为3
         /// </summary>
         int trunkEdgeNum = 3;
+        int trunkOffset = 1;
         Dictionary<int, GameObject> trunkDic = new Dictionary<int, GameObject>();
         List<int> unloadTrunkLst = new List<int>();
 
@@ -25,11 +26,17 @@ namespace UFrame.ResourceManagement
 
         }
 
+        public void SetTrunkEdgeNum(int trunkEdgeNum)
+        {
+            this.trunkEdgeNum = trunkEdgeNum;
+            trunkOffset = trunkEdgeNum / 2;
+        }
+
         public void LoadSlicingMapTileAsync(string terrainName, Vector3 pos)
         {
             LoadTerrainRoot();
             LoadSlicingData(terrainName);
-            LoadNineTrunkAsync(pos);
+            LoadTrunkAsync(pos);
         }
 
         void LoadTerrainRoot()
@@ -42,8 +49,6 @@ namespace UFrame.ResourceManagement
             var getter = ResHelper.LoadGameObject("terrainslicing/terrrain_root");
             terrainRoot = getter.Get();
             terrainRootTrans = terrainRoot.transform;
-            //terrainRoot.transform.position = Vector3.zero;
-            //terrainRoot.transform.rotation = Quaternion.Euler(Vector3.zero);
         }
 
         void LoadSlicingData(string terrainName)
@@ -60,13 +65,13 @@ namespace UFrame.ResourceManagement
             Logger.LogWarp.LogFormat("{0}, {1}", mapTilesize, trunkSize);
         }
 
-        void LoadNineTrunkAsync(Vector3 pos)
+        void LoadTrunkAsync(Vector3 pos)
         {
-            //int NonNullCount = GetTrunkDicNonCount();
-            //if (NonNullCount < (trunkEdgeNum * trunkEdgeNum) && NonNullCount != 0)
-            //{
-            //    return;
-            //}
+            int NonNullCount = GetTrunkDicNonCount();
+            if (NonNullCount < (trunkEdgeNum * trunkEdgeNum) && NonNullCount != 0)
+            {
+                return;
+            }
 
             Vector2_Bit idx = LocateTrunk(pos);
             //加载当前的九宫格
@@ -75,12 +80,17 @@ namespace UFrame.ResourceManagement
             UnLoadPreNineTrunk(idx);
         }
 
+        /// <summary>
+        /// 定位到trunk
+        /// </summary>
+        /// <param name="pos"></param>
+        /// <returns></returns>
         Vector2_Bit LocateTrunk(Vector3 pos)
         {
-            //ceil是上取整， 从0开始计数，所以-2
+            //ceil是上取整， 从0开始计数，所以-1
             int x = Mathf.CeilToInt(pos.x / trunkSize.x);
             int y = Mathf.CeilToInt(pos.z / trunkSize.y);
-            return new Vector2_Bit(x - 2, y - 2);
+            return new Vector2_Bit(x - 1, y - 1);
         }
 
         void LoadCurrNineTrunk(Vector2_Bit idx)
@@ -89,7 +99,8 @@ namespace UFrame.ResourceManagement
             {
                 for (int j = 0; j < trunkEdgeNum; j++)
                 {
-                    Vector2_Bit idxTrunk = new Vector2_Bit(i + idx.x, j + idx.y);
+                    //idx 是N宫格的中心，idx.x - trunkOffset 是左下角
+                    Vector2_Bit idxTrunk = new Vector2_Bit(i + idx.x - trunkOffset, j + idx.y - trunkOffset);
                     string path = string.Format("terrainslicing/{0}/{1}_{2}_{3}",
                         slicingData.terrainName, slicingData.terrainName,
                         idxTrunk.x, idxTrunk.y);
@@ -115,8 +126,8 @@ namespace UFrame.ResourceManagement
 
         void UnLoadPreNineTrunk(Vector2_Bit idx)
         {
-            int x = idx.x + 1;
-            int y = idx.y + 1;
+            int x = idx.x;
+            int y = idx.y;
             if (GetTrunkDicNonCount() <= (trunkEdgeNum * trunkEdgeNum))
             {
                 return;
@@ -128,7 +139,7 @@ namespace UFrame.ResourceManagement
                 int preX = preIdx.x;
                 int preY = preIdx.y;
 
-                if (Mathf.Abs(preX - x) > 1 || Mathf.Abs(preY - y) > 1)
+                if (Mathf.Abs(preX - x) > trunkOffset || Mathf.Abs(preY - y) > trunkOffset)
                 {
                     //Debug.Log(preIdx);
                     if (kv.Value != null)

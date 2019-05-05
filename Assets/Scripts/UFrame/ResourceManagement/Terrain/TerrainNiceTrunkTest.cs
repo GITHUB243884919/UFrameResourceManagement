@@ -10,6 +10,7 @@ public class TerrainNiceTrunkTest : MonoBehaviour
             && transform.position.z > 25 &&
             transform.position.z < 175)
         {
+            TerrainManager.GetInstance().SetTrunkEdgeNum(3);
             TerrainManager.GetInstance().LoadSlicingMapTileAsync("terrain", transform.position);
         }
 
