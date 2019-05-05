@@ -135,8 +135,11 @@ namespace UFrame.ResourceManagement
 
                 if (Mathf.Abs(preX - x) > 1 || Mathf.Abs(preY - y) > 1)
                 {
-                    Debug.Log(preIdx);
-                    ResHelper.DestroyGameObject(kv.Value);
+                    //Debug.Log(preIdx);
+                    if (kv.Value != null)
+                    {
+                        ResHelper.DestroyGameObject(kv.Value);
+                    }
                     unloadTrunkLst.Add(kv.Key);
                 }
             }
