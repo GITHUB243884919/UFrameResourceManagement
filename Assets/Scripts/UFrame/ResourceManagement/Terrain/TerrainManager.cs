@@ -139,8 +139,9 @@ namespace UFrame.ResourceManagement
                     if (kv.Value != null)
                     {
                         ResHelper.DestroyGameObject(kv.Value);
+                        unloadTrunkLst.Add(kv.Key);
                     }
-                    unloadTrunkLst.Add(kv.Key);
+                    
                 }
             }
             ResHelper.RealseAllUnUse();
