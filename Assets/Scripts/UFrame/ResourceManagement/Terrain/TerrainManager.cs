@@ -67,7 +67,7 @@ namespace UFrame.ResourceManagement
 
         void LoadTrunkAsync(Vector3 pos)
         {
-            int NonNullCount = GetTrunkDicNonCount();
+            int NonNullCount = trunkDic.GetNonNullCount();//GetTrunkDicNonCount();
             if (NonNullCount < (trunkEdgeNum * trunkEdgeNum) && NonNullCount != 0)
             {
                 return;
@@ -128,10 +128,11 @@ namespace UFrame.ResourceManagement
         {
             int x = idx.x;
             int y = idx.y;
-            if (GetTrunkDicNonCount() <= (trunkEdgeNum * trunkEdgeNum))
+            if (trunkDic.GetNonNullCount() <= (trunkEdgeNum * trunkEdgeNum))
             {
                 return;
             }
+
             unloadTrunkLst.Clear();
             foreach (var kv in trunkDic)
             {
@@ -156,23 +157,6 @@ namespace UFrame.ResourceManagement
             }
             ResHelper.RealseAllUnUse();
         }
-
-        int GetTrunkDicNonCount()
-        {
-            int count = 0;
-            foreach(var v in trunkDic.Values)
-            {
-                if (v != null)
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
-
-
 
     }
 }
