@@ -25,37 +25,26 @@ namespace UFrame.ResourceManagement
 
         }
 
-        public void LoadSlicingTerrain(string terrainName)
-        {
-            LoadTerrainRoot();
-            LoadSlicingData(terrainName);
-            for (int i = 0; i < slicingData.slicingSize; i++)
-            {
-                for (int j = 0; j < slicingData.slicingSize; j++)
-                {
-                    string path = string.Format("terrainslicing/{0}/{1}_{2}_{3}", slicingData.terrainName, slicingData.terrainName, i, j);
-                    var getterGo = ResHelper.LoadGameObject(path);
-                    GameObject go = getterGo.Get();
-                    go.transform.position = new Vector3(slicingData.terrainSize.x / slicingData.slicingSize * i, 0, slicingData.terrainSize.z / slicingData.slicingSize * j);
-                    //go.transform.SetParent(terrainRootTrans);
-                }
-            }
-        }
-
-        //public void LoadSlicingMapTile(string terrainName, Vector3 pos)
-        //{
-        //    LoadTerrainRoot();
-        //    LoadSlicingData(terrainName);
-        //    LoadNineTrunk(pos);
-        //}
-
         public void LoadSlicingMapTileAsync(string terrainName, Vector3 pos)
         {
             LoadTerrainRoot();
             LoadSlicingData(terrainName);
             LoadNineTrunkAsync(pos);
         }
-        
+
+        void LoadTerrainRoot()
+        {
+            if (terrainRoot != null)
+            {
+                return;
+            }
+
+            var getter = ResHelper.LoadGameObject("terrainslicing/terrrain_root");
+            terrainRoot = getter.Get();
+            terrainRootTrans = terrainRoot.transform;
+            //terrainRoot.transform.position = Vector3.zero;
+            //terrainRoot.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
 
         void LoadSlicingData(string terrainName)
         {
@@ -73,6 +62,12 @@ namespace UFrame.ResourceManagement
 
         void LoadNineTrunkAsync(Vector3 pos)
         {
+            //int NonNullCount = GetTrunkDicNonCount();
+            //if (NonNullCount < (trunkEdgeNum * trunkEdgeNum) && NonNullCount != 0)
+            //{
+            //    return;
+            //}
+
             Vector2_Bit idx = LocateTrunk(pos);
             //加载当前的九宫格
             LoadCurrNineTrunk(idx);
@@ -122,7 +117,11 @@ namespace UFrame.ResourceManagement
         {
             int x = idx.x + 1;
             int y = idx.y + 1;
-            if (trunkDic.Count <= (trunkEdgeNum * trunkEdgeNum))
+            //if (trunkDic.Count <= (trunkEdgeNum * trunkEdgeNum))
+            //{
+            //    return;
+            //}
+            if (GetTrunkDicNonCount() <= (trunkEdgeNum * trunkEdgeNum))
             {
                 return;
             }
@@ -152,20 +151,22 @@ namespace UFrame.ResourceManagement
             }
         }
 
-
-        void LoadTerrainRoot()
+        int GetTrunkDicNonCount()
         {
-            if (terrainRoot != null)
+            int count = 0;
+            foreach(var v in trunkDic.Values)
             {
-                return;
+                if (v != null)
+                {
+                    count++;
+                }
             }
 
-            var getter = ResHelper.LoadGameObject("terrainslicing/terrrain_root");
-            terrainRoot = getter.Get();
-            terrainRootTrans = terrainRoot.transform;
-            terrainRoot.transform.position = Vector3.zero;
-            terrainRoot.transform.rotation = Quaternion.Euler(Vector3.zero);
+            return count;
         }
+
+
+
 
     }
 }

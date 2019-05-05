@@ -54,13 +54,32 @@ namespace Game
 
         public void Start()
         {
-            UFrame.Data.Vector2_Bit v2bit1 = new UFrame.Data.Vector2_Bit();
-            v2bit1.x = 4;
-            v2bit1.y = 9;
-            Logger.LogWarp.Log("v2bit1" + v2bit1);
-            UFrame.Data.Vector2_Bit v2bit2 = new UFrame.Data.Vector2_Bit(v2bit1.BitData);
-            Logger.LogWarp.Log("v2bit2" + v2bit2);
+            //UFrame.Data.Vector2_Bit v2bit1 = new UFrame.Data.Vector2_Bit();
+            //v2bit1.x = 4;
+            //v2bit1.y = 9;
+            //Logger.LogWarp.Log("v2bit1" + v2bit1);
+            //UFrame.Data.Vector2_Bit v2bit2 = new UFrame.Data.Vector2_Bit(v2bit1.BitData);
+            //Logger.LogWarp.Log("v2bit2" + v2bit2);
+
             LoadScene();
+
+            Dictionary<int, GameObject> tmpDic = new Dictionary<int, GameObject>();
+            tmpDic.Add(1, null);
+            Debug.Log(tmpDic.Count);
+
+            //ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
+            //{
+            //    GameObject go = getter.Get();
+            //    ResHelper.DestroyGameObject(go);
+            //});
+
+
+            //ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
+            //{
+            //    GameObject go = getter.Get();
+            //    ResHelper.DestroyGameObject(go);
+            //});
+
         }
 
         void LoadScene()

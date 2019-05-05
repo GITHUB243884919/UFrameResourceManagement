@@ -116,7 +116,6 @@ namespace UFrame.ResourceManagement
                 //没加载过的
                 AssetBundle dependBundle = null;
                 bundlePath = GetBundlePath(dependencies[i]);
-                //bundleRequest = AssetBundle.LoadFromFileAsync(Path.Combine(bundleRootPath, dependencies[i]));
                 bundleRequest = AssetBundle.LoadFromFileAsync(bundlePath);
                 while(!bundleRequest.isDone)
                 {
@@ -126,7 +125,6 @@ namespace UFrame.ResourceManagement
                 dependBundleHolder = new BundleHolder(dependBundle);
                 dependBundleHolder.AddRefence(assetName);
                 //存bundleHolder
-                //Debug.LogError(Time.realtimeSinceStartup + " " + dependencies[i] + " " + assetName);
                 bundleHolders.Add(dependencies[i], dependBundleHolder);
             }
 
@@ -142,7 +140,6 @@ namespace UFrame.ResourceManagement
                 case E_LoadAsset.LoadSingle:
                     int index = assetName.LastIndexOf("/");
                     string assetNameInBundle = assetName.Substring(index + 1);
-                    //Debug.LogError(assetName + " " + assetNameInBundle);
                     assetRequest = assetBundle.LoadAssetAsync(assetNameInBundle);
                     break;
                 case E_LoadAsset.LoadAll:

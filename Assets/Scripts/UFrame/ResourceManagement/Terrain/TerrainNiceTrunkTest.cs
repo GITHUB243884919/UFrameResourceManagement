@@ -14,18 +14,5 @@ public class TerrainNiceTrunkTest : MonoBehaviour
         }
 
     }
-
-    //void OnDrawGizmos()
-    //{
-    //    //if (target != null)
-    //    int Num = 200 / 8;
-    //    for (int i = 0;i < Num; i++)
-    //    {
-    //        Gizmos.color = Color.blue;
-    //        Vector3 begin = new Vector3(0, 0, Num * i);
-    //        Vector3 end = new Vector3(200, 0, Num * i);
-    //        Gizmos.DrawLine(begin, end);
-    //    }
-    //}
     
 }
