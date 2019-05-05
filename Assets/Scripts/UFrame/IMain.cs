@@ -14,6 +14,7 @@ namespace UFrame
         void OnApplicationQuit();
         void OnApplicationPause(bool pause);
         void OnApplicationFocus(bool force);
+        void OnDrawGizmos();
         void Shutdown();
     }
 
@@ -70,6 +71,14 @@ namespace UFrame
 				app.OnApplicationFocus (force);
 			}
 		}
+
+        void OnDrawGizmos()
+        {
+            if (null != app)
+            {
+                app.OnDrawGizmos();
+            }
+        }
 
 //#if UNLOAD_ONGUI
 //        public void OnGUI()

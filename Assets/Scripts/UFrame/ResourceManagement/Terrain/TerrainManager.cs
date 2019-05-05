@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UFrame.Common;
+using UFrame.Data;
 
 namespace UFrame.ResourceManagement
 {
@@ -12,11 +13,13 @@ namespace UFrame.ResourceManagement
         TerrainSlicingData slicingData;
         Vector2 mapTilesize;
         Vector2 trunkSize;
-        Dictionary<Vector2, GameObject> trunckDic = new Dictionary<Vector2, GameObject>();
-        HashSet<Vector2> loadingSet = new HashSet<Vector2>();
+        /// <summary>
+        /// trunk是9宫格，边长为3
+        /// </summary>
+        int trunkEdgeNum = 3;
+        Dictionary<int, GameObject> trunkDic = new Dictionary<int, GameObject>();
+        List<int> unloadTrunkLst = new List<int>();
 
-        bool isLoading = false;
-        int loadNum = 0;
         public void Init()
         {
 
@@ -39,12 +42,12 @@ namespace UFrame.ResourceManagement
             }
         }
 
-        public void LoadSlicingMapTile(string terrainName, Vector3 pos)
-        {
-            LoadTerrainRoot();
-            LoadSlicingData(terrainName);
-            LoadNineTrunk(pos);
-        }
+        //public void LoadSlicingMapTile(string terrainName, Vector3 pos)
+        //{
+        //    LoadTerrainRoot();
+        //    LoadSlicingData(terrainName);
+        //    LoadNineTrunk(pos);
+        //}
 
         public void LoadSlicingMapTileAsync(string terrainName, Vector3 pos)
         {
@@ -68,74 +71,83 @@ namespace UFrame.ResourceManagement
             Logger.LogWarp.LogFormat("{0}, {1}", mapTilesize, trunkSize);
         }
 
-        Vector2 LocateTrunk(Vector3 pos)
-        {
-            Vector2 index = Vector2.zero;
-            //ceil是上取整， 从0开始计数，所以-2
-            float x = Mathf.Ceil(pos.x / trunkSize.x);
-            index.x = x - 2;
-            float y = Mathf.Ceil(pos.z / trunkSize.y);
-            index.y = y - 2;
-            return index;
-        }
-
-        void LoadNineTrunk(Vector3 pos)
-        {
-            Vector2 idx = LocateTrunk(pos);
-            Logger.LogWarp.Log("idx " + idx);
-            for(int i = 0; i < 3; i++)
-            {
-                for(int j = 0; j < 3; j++)
-                {
-                    string path = string.Format("terrainslicing/{0}/{1}_{2}_{3}", 
-                        slicingData.terrainName, slicingData.terrainName,
-                        i + (int)(idx.x), j + (int)(idx.y));
-                    Logger.LogWarp.Log(path);
-                    var getterGo = ResHelper.LoadGameObject(path);
-                    GameObject go = getterGo.Get();
-                    float x = trunkSize.x * (i + (int)(idx.x));
-                    float y = trunkSize.y * (j + (int)(idx.y));
-                    go.transform.position = new Vector3(x, 0, y);
-                    go.transform.SetParent(terrainRootTrans);
-                }
-            }
-        }
-
         void LoadNineTrunkAsync(Vector3 pos)
         {
-            Vector2 idx = LocateTrunk(pos);
-            for (int i = 0; i < 3; i++)
+            Vector2_Bit idx = LocateTrunk(pos);
+            //加载当前的九宫格
+            LoadCurrNineTrunk(idx);
+            //释放之前9宫格不在当前9宫格内的trunk
+            UnLoadPreNineTrunk(idx);
+        }
+
+        Vector2_Bit LocateTrunk(Vector3 pos)
+        {
+            //ceil是上取整， 从0开始计数，所以-2
+            int x = Mathf.CeilToInt(pos.x / trunkSize.x);
+            int y = Mathf.CeilToInt(pos.z / trunkSize.y);
+            return new Vector2_Bit(x - 2, y - 2);
+        }
+
+        void LoadCurrNineTrunk(Vector2_Bit idx)
+        {
+            for (int i = 0; i < trunkEdgeNum; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < trunkEdgeNum; j++)
                 {
-                    Vector2 idxTrunk = Vector2.zero;
-                    idxTrunk.x = i + (int)(idx.x);
-                    idxTrunk.y = j + (int)(idx.y);
+                    Vector2_Bit idxTrunk = new Vector2_Bit(i + idx.x, j + idx.y);
                     string path = string.Format("terrainslicing/{0}/{1}_{2}_{3}",
                         slicingData.terrainName, slicingData.terrainName,
                         idxTrunk.x, idxTrunk.y);
-
-                    if (!trunckDic.ContainsKey(idxTrunk))
+                    GameObject trunkGo = null;
+                    if (!trunkDic.TryGetValue(idxTrunk.BitData, out trunkGo))
                     {
-                        trunckDic.Add(idxTrunk, null);
-                        //Logger.LogWarp.LogFormat("{0}, {1}", path, idxTrunk);
+                        trunkDic.Add(idxTrunk.BitData, null);
                         ResHelper.LoadGameObjectAsync(path, (getter) =>
                         {
-                            GameObject go = getter.Get();
+                            trunkGo = getter.Get();
                             float x = trunkSize.x * idxTrunk.x;
                             float y = trunkSize.y * idxTrunk.y;
-                            //Logger.LogWarp.LogFormat("x{0}, y{1}, trunkSize{2}, idxTrunk{3}", x, y, trunkSize, idxTrunk);
-                            
-                            go.transform.position = new Vector3(x, 0, y);
-                            go.transform.rotation = Quaternion.Euler(Vector3.zero);
-                            go.transform.SetParent(terrainRootTrans);
-                            //go.transform.rotation = Quaternion.identity;
-                            trunckDic[idxTrunk] = go;
+
+                            trunkGo.transform.position = new Vector3(x, 0, y);
+
+                            trunkGo.transform.SetParent(terrainRootTrans);
+                            trunkDic[idxTrunk.BitData] = trunkGo;
                         });
                     }
                 }
             }
         }
+
+        void UnLoadPreNineTrunk(Vector2_Bit idx)
+        {
+            int x = idx.x + 1;
+            int y = idx.y + 1;
+            if (trunkDic.Count <= (trunkEdgeNum * trunkEdgeNum))
+            {
+                return;
+            }
+            unloadTrunkLst.Clear();
+            foreach (var kv in trunkDic)
+            {
+                Vector2_Bit preIdx = new Vector2_Bit(kv.Key);
+                int preX = preIdx.x;
+                int preY = preIdx.y;
+
+                if (Mathf.Abs(preX - x) > 1 || Mathf.Abs(preY - y) > 1)
+                {
+                    Debug.Log(preIdx);
+                    ResHelper.DestroyGameObject(kv.Value);
+                    unloadTrunkLst.Add(kv.Key);
+                }
+            }
+            ResHelper.RealseAllUnUse();
+
+            for (int i = 0; i < unloadTrunkLst.Count; i++)
+            {
+                trunkDic.Remove(unloadTrunkLst[i]);
+            }
+        }
+
 
         void LoadTerrainRoot()
         {

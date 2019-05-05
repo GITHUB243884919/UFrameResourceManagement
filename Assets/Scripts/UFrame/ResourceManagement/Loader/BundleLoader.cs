@@ -174,7 +174,7 @@ namespace UFrame.ResourceManagement
             for (int i = 0, iMax = unUseGameObject.Count; i < iMax; ++i)
             {
                 goAssetHolders[unUseGameObject[i]].Clear();
-                Debug.LogError("remove" + unUseGameObject[i].name);
+                Logger.LogWarp.Log("remove" + unUseGameObject[i].name);
                 goAssetHolders.Remove(unUseGameObject[i]);
             }
 

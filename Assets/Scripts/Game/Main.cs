@@ -54,6 +54,12 @@ namespace Game
 
         public void Start()
         {
+            UFrame.Data.Vector2_Bit v2bit1 = new UFrame.Data.Vector2_Bit();
+            v2bit1.x = 4;
+            v2bit1.y = 9;
+            Logger.LogWarp.Log("v2bit1" + v2bit1);
+            UFrame.Data.Vector2_Bit v2bit2 = new UFrame.Data.Vector2_Bit(v2bit1.BitData);
+            Logger.LogWarp.Log("v2bit2" + v2bit2);
             LoadScene();
         }
 
@@ -122,6 +128,28 @@ namespace Game
             Logger.LogWarp.Log(tester.transform.rotation);
             tester.transform.position = new Vector3(26, 0, 26);
             tester.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
+
+        public void OnDrawGizmos()
+        {
+            //int Num = 200 / 8;
+            int Num = 8;
+            int Num2 = 25;
+            for (int i = 0; i <= Num; i++)
+            {
+                Gizmos.color = Color.blue;
+                Vector3 begin = new Vector3(0, 0, 25 * i);
+                Vector3 end = new Vector3(200, 0, 25 * i);
+                Gizmos.DrawLine(begin, end);
+            }
+
+            for (int i = 0; i <= Num; i++)
+            {
+                Gizmos.color = Color.blue;
+                Vector3 begin = new Vector3(25 * i, 0, 0);
+                Vector3 end = new Vector3(25 * i, 0, 200);
+                Gizmos.DrawLine(begin, end);
+            }
         }
     }
 
