@@ -51,6 +51,7 @@ namespace UFrame.ResourceManagement
             if (LoadAssetFromNameAssetHolder(assetName, bundleName, out getter))
             {
                 callback(getter);
+                return;
             }
 
             BundleAsyncRequest bundleRequest = new BundleAsyncRequest(assetName, eloadAsset);

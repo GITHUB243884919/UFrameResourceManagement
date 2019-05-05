@@ -54,34 +54,59 @@ namespace Game
 
         public void Start()
         {
-            //UFrame.Data.Vector2_Bit v2bit1 = new UFrame.Data.Vector2_Bit();
-            //v2bit1.x = 4;
-            //v2bit1.y = 9;
-            //Logger.LogWarp.Log("v2bit1" + v2bit1);
-            //UFrame.Data.Vector2_Bit v2bit2 = new UFrame.Data.Vector2_Bit(v2bit1.BitData);
-            //Logger.LogWarp.Log("v2bit2" + v2bit2);
 
-            LoadScene();
+            //LoadScene();
+            //Test_Vector2_Bit();
+            Test_Async();
+            //Test_Sync();
+        }
 
-            Dictionary<int, GameObject> tmpDic = new Dictionary<int, GameObject>();
-            tmpDic.Add(1, null);
-            Debug.Log(tmpDic.Count);
+        void Test_Async()
+        {
+            ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
+            {
+                GameObject go = getter.Get();
+                //ResHelper.DestroyGameObject(go);
+                Debug.Log("aaaa");
+                //Debug.Log("bbbb");
+                //ResHelper.LoadGameObjectAsync("prefabs/cube", (getter2) =>
+                //{
+                //    GameObject go2 = getter2.Get();
+                //    //ResHelper.DestroyGameObject(go);
+                //});
 
-            //ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
-            //{
-            //    GameObject go = getter.Get();
-            //    ResHelper.DestroyGameObject(go);
-            //});
+            });
 
+            Debug.Log("bbbb");
+            ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
+            {
+                GameObject go = getter.Get();
+                //ResHelper.DestroyGameObject(go);
+            });
+        }
 
-            //ResHelper.LoadGameObjectAsync("prefabs/cube", (getter) =>
-            //{
-            //    GameObject go = getter.Get();
-            //    ResHelper.DestroyGameObject(go);
-            //});
+        void Test_Sync()
+        {
+            var getter = ResHelper.LoadGameObject("prefabs/cube");
+            GameObject go = getter.Get();
+            ResHelper.DestroyGameObject(go);
+
+            getter = ResHelper.LoadGameObject("prefabs/cube");
+            GameObject go2 = getter.Get();
+            //ResHelper.DestroyGameObject(go);
 
         }
 
+
+        void Test_Vector2_Bit()
+        {
+            UFrame.Data.Vector2_Bit v2bit1 = new UFrame.Data.Vector2_Bit();
+            v2bit1.x = 4;
+            v2bit1.y = 9;
+            Logger.LogWarp.Log("v2bit1" + v2bit1);
+            UFrame.Data.Vector2_Bit v2bit2 = new UFrame.Data.Vector2_Bit(v2bit1.BitData);
+            Logger.LogWarp.Log("v2bit2" + v2bit2);
+        }
         void LoadScene()
         {
             //UFrame.ResourceManagement.SceneManagement.GetInstance().LoadScene("scenes/scene_2", () =>

@@ -117,10 +117,6 @@ namespace UFrame.ResourceManagement
         {
             int x = idx.x + 1;
             int y = idx.y + 1;
-            //if (trunkDic.Count <= (trunkEdgeNum * trunkEdgeNum))
-            //{
-            //    return;
-            //}
             if (GetTrunkDicNonCount() <= (trunkEdgeNum * trunkEdgeNum))
             {
                 return;
@@ -140,15 +136,14 @@ namespace UFrame.ResourceManagement
                         ResHelper.DestroyGameObject(kv.Value);
                         unloadTrunkLst.Add(kv.Key);
                     }
-                    
                 }
             }
-            ResHelper.RealseAllUnUse();
 
             for (int i = 0; i < unloadTrunkLst.Count; i++)
             {
                 trunkDic.Remove(unloadTrunkLst[i]);
             }
+            ResHelper.RealseAllUnUse();
         }
 
         int GetTrunkDicNonCount()
