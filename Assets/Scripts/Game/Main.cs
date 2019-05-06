@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 //using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UFrame;
@@ -54,7 +51,6 @@ namespace Game
 
         public void Start()
         {
-
             LoadScene();
             //Test_Vector2_Bit();
             //Test_Async();
@@ -74,7 +70,6 @@ namespace Game
                 //    GameObject go2 = getter2.Get();
                 //    //ResHelper.DestroyGameObject(go);
                 //});
-
             });
 
             Debug.Log("bbbb");
