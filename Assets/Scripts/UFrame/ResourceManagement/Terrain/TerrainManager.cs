@@ -74,10 +74,10 @@ namespace UFrame.ResourceManagement
             }
 
             Vector2_Bit idx = LocateTrunk(pos);
-            //加载当前的九宫格
-            LoadCurrNineTrunk(idx);
-            //释放之前9宫格不在当前9宫格内的trunk
-            UnLoadPreNineTrunk(idx);
+            //加载当前的N宫格
+            LoadCurrNTrunk(idx);
+            //释放之前N宫格不在当前N宫格内的trunk
+            UnLoadPreNTrunk(idx);
         }
 
         /// <summary>
@@ -93,7 +93,11 @@ namespace UFrame.ResourceManagement
             return new Vector2_Bit(x - 1, y - 1);
         }
 
-        void LoadCurrNineTrunk(Vector2_Bit idx)
+        /// <summary>
+        /// 加载N宫格
+        /// </summary>
+        /// <param name="idx"></param>
+        void LoadCurrNTrunk(Vector2_Bit idx)
         {
             for (int i = 0; i < trunkEdgeNum; i++)
             {
@@ -124,7 +128,12 @@ namespace UFrame.ResourceManagement
             }
         }
 
-        void UnLoadPreNineTrunk(Vector2_Bit idx)
+        /// <summary>
+        /// 释放之前N宫格不在当前N宫格内的trunk
+        /// 因为是异步加载，可能本次释放不完。
+        /// </summary>
+        /// <param name="idx"></param>
+        void UnLoadPreNTrunk(Vector2_Bit idx)
         {
             int x = idx.x;
             int y = idx.y;
@@ -155,6 +164,8 @@ namespace UFrame.ResourceManagement
             {
                 trunkDic.Remove(unloadTrunkLst[i]);
             }
+
+            //释放bundle
             ResHelper.RealseAllUnUse();
         }
 

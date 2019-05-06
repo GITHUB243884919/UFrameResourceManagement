@@ -71,6 +71,7 @@ namespace UFrame.ResourceManagement
                 yield return null;
             }
 
+            //等待完bundleRequest再次检查有没有被加载过。防止同一资源加载出错
             Logger.LogWarp.Log(bundleRequest.currRequestID + " wait finished!");
             string bundleName = GetBundleName(bundleRequest.assetName);
             T getter;
