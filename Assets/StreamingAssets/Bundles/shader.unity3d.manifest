@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2858140714
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1fc6cd63ac6844785d260393184f7c30
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6370d3f9de9eca57f523bce048404a46
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/shader/uframe_test_2.shader
+- Assets/GameResources/shader/uframe_test_1.shader
+Dependencies: []

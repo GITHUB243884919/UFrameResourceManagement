@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3849775352
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 331d4e7dc188c79d12424983be9d0275
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 38cff5986b199b2c394bcebee4891881
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 156
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/terrainslicing_data/terrain/terrain_5_5.asset
+Dependencies:
+- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures.unity3d

@@ -5,6 +5,7 @@ using UFrame;
 //using UFrame.FSM;
 //using UFrame.MessageCenter
 using UFrame.ResourceManagement;
+using UnityEngine.U2D;
 
 namespace Game
 {
@@ -51,10 +52,26 @@ namespace Game
 
         public void Start()
         {
-            LoadScene();
+            //LoadScene();
             //Test_Vector2_Bit();
             //Test_Async();
             //Test_Sync();
+            //Test_Shader();
+            Test_Sprite();
+        }
+
+        void Test_Sprite()
+        {
+            Sprite sp = ResHelper.LoadSprite("ui_sprite/unitylogo/unitylogo", PublicAssetHolderGameObject.GetInstance().Go);
+            Debug.LogError("sp != null " + (sp != null));
+            GameObject.Find("Image").GetComponent<Image>().sprite = sp;
+        }
+
+        void Test_Shader()
+        {
+            Material m = new Material(Shader.Find("UFrame/Test_1"));
+            GameObject cube = GameObject.Find("Cube");
+            cube.GetComponent<MeshRenderer>().material = m;
         }
 
         void Test_Async()

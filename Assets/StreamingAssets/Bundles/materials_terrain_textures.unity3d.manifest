@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 3841007917
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 80ed0821d23884b404e723867a89d209
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c73412a662fd4e4f36af34cbdf078b85
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/materials/terrain_textures/ground_05.jpg
+- Assets/GameResources/materials/terrain_textures/ground9.png
+- Assets/GameResources/materials/terrain_textures/ground_04.jpg
+- Assets/GameResources/materials/terrain_textures/ground_04_nmp.jpg
+- Assets/GameResources/materials/terrain_textures/ground1.png
+- Assets/GameResources/materials/terrain_textures/ground_05_nmp.jpg
+Dependencies: []

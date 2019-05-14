@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1732472769061974}
+  m_RootGameObject: {fileID: 1404280381118430}
   m_IsPrefabParent: 1
---- !u!1 &1732472769061974
+--- !u!1 &1404280381118430
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4136471666195346}
-  - component: {fileID: 218310814094239800}
-  - component: {fileID: 154533797169756826}
+  - component: {fileID: 4909413004083906}
+  - component: {fileID: 218541445668553656}
+  - component: {fileID: 154736304765643050}
   m_Layer: 0
   m_Name: terrain_0_3
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4136471666195346
+--- !u!4 &4909413004083906
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1732472769061974}
+  m_GameObject: {fileID: 1404280381118430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,25 +41,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!154 &154533797169756826
+--- !u!154 &154736304765643050
 TerrainCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1732472769061974}
+  m_GameObject: {fileID: 1404280381118430}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 2bf5ed3a230e8f045a1e287b02713158, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 5b3b991c985d79742aa1020c5e8e425d, type: 2}
   m_EnableTreeColliders: 1
---- !u!218 &218310814094239800
+--- !u!218 &218541445668553656
 Terrain:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1732472769061974}
+  m_GameObject: {fileID: 1404280381118430}
   m_Enabled: 1
   serializedVersion: 3
-  m_TerrainData: {fileID: 15600000, guid: 2bf5ed3a230e8f045a1e287b02713158, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 5b3b991c985d79742aa1020c5e8e425d, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5

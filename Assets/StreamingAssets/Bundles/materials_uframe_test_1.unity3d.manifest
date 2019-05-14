@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2658374219
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b63d13e10ee63667a457ed99240db6bc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c2bdabd68c118aabc18c59eaf5951821
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+Assets:
+- Assets/GameResources/materials/uframe_test_1.mat
+Dependencies:
+- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/shader.unity3d

@@ -1,21 +1,17 @@
 ManifestFileVersion: 0
-CRC: 1488318810
+CRC: 2518122438
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c546f5dbb0038b6cd2e4a00e1be1d63c
+    Hash: 99d78491ff4fc637e2fc8bf55fece2fb
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6155cc06c724b1a9cdded46bc18daca2
+    Hash: 3771a91399e0d11d56ef5a05e5a37b01
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
-  Script: {instanceID: 0}
-- Class: 28
-  Script: {instanceID: 0}
-- Class: 48
   Script: {instanceID: 0}
 - Class: 154
   Script: {instanceID: 0}
@@ -26,9 +22,4 @@ ClassTypes:
 Assets:
 - Assets/GameResources/terrainslicing/terrain/terrain_4_7.prefab
 Dependencies:
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground1.unity3d
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground9.unity3d
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_04.unity3d
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_04_nmp.unity3d
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_05.unity3d
-- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/materials_terrain_textures_ground_05_nmp.unity3d
+- D:/Fzy/Code/ResourceManagement/UFrameResourceManagement/Assets/StreamingAssets/Bundles/terrainslicing_data_terrain_terrain_4_7.unity3d
